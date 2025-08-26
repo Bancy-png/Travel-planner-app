@@ -25,6 +25,12 @@ async function searchCities(query) {
             country: "France",
             description: "The city of lights, love, and the iconic Eiffel Tower.",
           },
+          {
+            id: "3",
+            city: "Kyoto",
+            country: "Japan",
+            description: "Tranquil temples and stunning cherry blossoms.",
+          },
         ]);
       }
     }, 1200);
