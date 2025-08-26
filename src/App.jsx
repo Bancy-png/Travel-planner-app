@@ -1,18 +1,19 @@
 // src/App.jsx
-import Navbar from "./components/Navbar";
-import Hero from "./components/Hero";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import DestinationDetails from "./pages/DestinationDetails";
+import SearchResults from "./pages/SearchResults";
 
-export default function App() {
+function App() {
   return (
-    <div className="min-h-screen bg-gray-100">
-      <Navbar />
-      <Hero />   {/* ✅ Add the Hero section here */}
-      <div className="p-6">
-        <h2 className="text-xl font-semibold">Welcome to Travel Planner ✈️</h2>
-        <p className="mt-2 text-gray-700">
-          Start planning your dream trip by searching above!
-        </p>
-      </div>
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/destination/:id" element={<DestinationDetails />} />
+        <Route path="/search" element={<SearchResults />} />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
