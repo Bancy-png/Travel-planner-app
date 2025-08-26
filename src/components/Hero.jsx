@@ -4,7 +4,7 @@ const Hero = () => {
   return (
     <section
       className="relative bg-cover bg-center h-[80vh] flex items-center justify-center text-center"
-      style={{ backgroundImage: "url('/ac4607e0-2173-4bd7-8cda-8cf1e7245373.jpeg')" }}
+      style={{ backgroundImage: "url('/Airplane window.jpeg')" }}
     >
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/40"></div>
@@ -14,7 +14,7 @@ const Hero = () => {
         <h1 className="text-4xl md:text-5xl font-extrabold mb-4">
           Plan Your Perfect Trip, Stress-Free
         </h1>
-        <p className="text-lg md:text-xl mb-6 text-gray-200">
+        <p className="text-lg md:text-xl mb-6 text--200">
           Discover the best destinations, activities, and accommodations
           tailored just for you.
         </p>

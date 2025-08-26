@@ -1,19 +1,17 @@
-// src/App.jsx
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
-import DestinationDetails from "./pages/DestinationDetails";
-import SearchResults from "./pages/SearchResults";
+import SearchResults from "./pages/SearchResults"; // we’ll create this next
 
-function App() {
+export default function App() {
   return (
-    <Router>
+    <div className="min-h-screen bg-gray-100">
+      <Navbar />
+
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/destination/:id" element={<DestinationDetails />} />
         <Route path="/search" element={<SearchResults />} />
       </Routes>
-    </Router>
+    </div>
   );
 }
-
-export default App;
