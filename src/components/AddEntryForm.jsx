@@ -1,38 +1,45 @@
+// src/components/AddEntryForm.jsx
 import { useState } from "react";
 import { useItineraryStore } from "../store/itineraryStore";
 
-export default function AddEntryForm({ itineraryId }) {
-  const [day, setDay] = useState("");
+export default function AddEntryForm() {
+  const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const addEntry = useItineraryStore((state) => state.addEntry);
+  const addItinerary = useItineraryStore((state) => state.addItinerary);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!day || !description) return;
-    addEntry(itineraryId, { day, description });
-    setDay("");
+    if (!title.trim()) return;
+    addItinerary({ title, description });
+    setTitle("");
     setDescription("");
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 mt-4">
+    <form
+      onSubmit={handleSubmit}
+      className="bg-white p-4 rounded-xl shadow-md space-y-3"
+    >
+      <h2 className="text-lg font-bold">Add New Itinerary</h2>
+
       <input
         type="text"
-        placeholder="Day"
-        value={day}
-        onChange={(e) => setDay(e.target.value)}
-        className="border p-2 rounded"
+        placeholder="Itinerary title"
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        className="w-full border p-2 rounded"
       />
-      <input
-        type="text"
+
+      <textarea
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
-        className="border p-2 rounded"
+        className="w-full border p-2 rounded"
       />
+
       <button
         type="submit"
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
       >
         Add
       </button>

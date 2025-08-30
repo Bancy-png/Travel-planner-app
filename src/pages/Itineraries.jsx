@@ -1,70 +1,52 @@
 // src/pages/Itineraries.jsx
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function Itineraries() {
-  const [itineraries, setItineraries] = useState([
-    { id: 1, name: "Paris Trip", days: 5 },
-    { id: 2, name: "Tokyo Adventure", days: 7 },
-    { id: 3, name: "Nairobi Culture", days: 3 },
-    { id: 4, name: "New York Getaway", days: 3 },
+  const [itineraries] = useState([
+    {
+      id: 1,
+      title: "Nairobi National Park Day Trip",
+      description: "A short safari just outside Nairobi. Perfect for a day getaway.",
+      duration: "1 Day",
+      price: "KES 5,000",
+    },
+    {
+      id: 2,
+      title: "Maasai Mara 3-Day Safari",
+      description: "Experience the Big Five and Maasai culture in the world-famous reserve.",
+      duration: "3 Days, 2 Nights",
+      price: "KES 35,000",
+    },
   ]);
 
-  const handleDelete = (id) => {
-    setItineraries(itineraries.filter((itinerary) => itinerary.id !== id));
-  };
-
-  const handleEdit = (id) => {
-    const newName = prompt("Enter new itinerary name:");
-    if (newName) {
-      setItineraries(
-        itineraries.map((itinerary) =>
-          itinerary.id === id ? { ...itinerary, name: newName } : itinerary
-        )
-      );
-    }
-  };
-
   return (
-    <div className="p-6 max-w-4xl mx-auto">
-      <h1 className="text-3xl font-bold mb-6">My Itineraries</h1>
-      {itineraries.length === 0 ? (
-        <p>No itineraries saved yet.</p>
-      ) : (
-        <ul className="space-y-4">
-          {itineraries.map((itinerary) => (
-            <li
-              key={itinerary.id}
-              className="flex justify-between items-center p-4 bg-white rounded-xl shadow-md"
-            >
-              <div>
-                <h2 className="text-lg font-semibold">{itinerary.name}</h2>
-                <p className="text-gray-500">{itinerary.days} days</p>
-              </div>
-              <div className="flex gap-3">
-                <Link
-                  to={`/itinerary/${itinerary.id}`}
-                  className="px-3 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-                >
-                  View
-                </Link>
-                <button
-                  onClick={() => handleEdit(itinerary.id)}
-                  className="px-3 py-1 bg-yellow-500 text-white rounded-md hover:bg-yellow-600"
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => handleDelete(itinerary.id)}
-                  className="px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
-                >
-                  Delete
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
+    <div className="px-6 py-10 bg-gray-50 min-h-screen">
+      <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+        Travel Itineraries
+      </h1>
+
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {itineraries.map((trip) => (
+          <div
+            key={trip.id}
+            className="bg-white shadow-lg rounded-2xl p-6 border border-gray-200 hover:shadow-xl transition"
+          >
+            <h2 className="text-xl font-semibold text-gray-800 mb-2">
+              {trip.title}
+            </h2>
+            <p className="text-gray-600 mb-4">{trip.description}</p>
+
+            <div className="flex justify-between text-sm text-gray-700 mb-4">
+              <span>⏳ {trip.duration}</span>
+              <span>💰 {trip.price}</span>
+            </div>
+
+            <button className="w-full bg-blue-600 text-white py-2 rounded-xl hover:bg-blue-700 transition">
+              View Details
+            </button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
